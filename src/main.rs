@@ -18,9 +18,14 @@ use range_methods::RANGE_ID;
 use serde_json::Value as JsonValue;
 
 fn main() {
+    // origin json is 
+    // [
+    // "{\"private_input\":\"14\", \"public_input\":\"3,34\", \"receipt_type\":\"Snark\"}",
+    // "{\"private_input\":\"14\", \"public_input\":\"3,34\", \"receipt_type\":\"Snark\"}"
+    // ]
     let json_arr = "[
-        {\"private_input\":\"14\", \"public_input\":\"3,34\", \"receipt_type\":\"Snark\"},
-        {\"private_input\":\"14\", \"public_input\":\"3,34\", \"receipt_type\":\"Snark\"}
+        \"{\\\"private_input\\\":\\\"14\\\", \\\"public_input\\\":\\\"3,34\\\", \\\"receipt_type\\\":\\\"Snark\\\"}\",
+        \"{\\\"private_input\\\":\\\"14\\\", \\\"public_input\\\":\\\"3,34\\\", \\\"receipt_type\\\":\\\"Snark\\\"}\"
         ]";
 
     // println!("{}", json_arr);
@@ -29,7 +34,9 @@ fn main() {
     // let item_arr = input_v.as_array().unwrap();
 
     // for item in item_arr {
-    //     println!("{}", item["public_input"].as_str().unwrap().to_string());
+    //     let item_str: JsonValue = serde_json::from_str(item.as_str().unwrap()).unwrap();
+    //     // println!("{}", item)
+    //     println!("{}", item_str["public_input"].as_str().unwrap().to_string());
     // }
 
     // Pick two numbers

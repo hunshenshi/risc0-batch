@@ -23,12 +23,14 @@ risc0_zkvm::guest::entry!(main);
 pub fn main() {
     // Load the string from the host
     let a: String = env::read();
+    env::log(&format!("input: {:?}", a));
 
     // the string is a json array
     let input_v: JsonValue = serde_json::from_str(&a).unwrap();
     let item_arr = input_v.as_array().unwrap();
  
     for item in item_arr {
-        env::log(&format!("public input parse error, Error: {:?}", item["public_input"].as_str().unwrap().to_string()));
+        let item_str: JsonValue = serde_json::from_str(item.as_str().unwrap()).unwrap();
+        env::log(&format!("public input parse error, Error: {:?}", item_str["public_input"].as_str().unwrap().to_string()));
     }
 }
